@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TimelineViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center mb-5">
+    <h1 class="display-3">Your timelines</h1>
+    <h2 class="display-4">testing</h2>
+</div>
+
+<div>
+    <a asp-action="Create" asp-controller="Timelines" class="btn btn-sm btn-outline-primary">New</a>
+</div>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MaxYears)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaxYears)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                    </td>
+                    <td>
+                        <a href="/timelines/edit/@item.Id" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </td>
+                    <td>
+                        <form method="delete" asp-action="Delete" asp-controller="Timelines">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="submit" class="btn btn-danger" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

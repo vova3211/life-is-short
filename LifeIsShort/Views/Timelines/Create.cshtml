@@ -1,0 +1,36 @@
+﻿@using LifeIsShort.Domain.Enums;
+@model TimelineInputModel
+@{
+    ViewData["Title"] = "Create Timeline";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" asp-controller="Timelines" method="post">
+            <h4>@ViewData["Title"]</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaxYears"></label>
+                <input asp-for="MaxYears" class="form-control" />
+                <span asp-validation-for="MaxYears" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday"></label>
+                <input asp-for="Birthday" class="form-control" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type"></label>
+                <input type="radio" asp-for="Type" value="@TimelineType.Year" /> Year <br />
+                <input type="radio" asp-for="Type" value="@TimelineType.Month" /> Month <br />
+                <input type="radio" asp-for="Type" value="@TimelineType.Week" /> Week <br />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-default">Register</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
